@@ -1,0 +1,41 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "A user of the Omni AI Studio",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "description": "Firebase Auth UID" },
+        "email": { "type": "string", "format": "email" },
+        "displayName": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email", "createdAt"]
+    },
+    "Creation": {
+      "title": "Creation",
+      "description": "An AI-generated asset (image, video, audio, text)",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "description": "The UID of the user who created this" },
+        "type": { "type": "string", "enum": ["image", "video", "audio", "text"] },
+        "prompt": { "type": "string" },
+        "url": { "type": "string", "description": "URL to the generated media" },
+        "content": { "type": "string", "description": "Text content if type is text" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "type", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/User" },
+      "description": "User profiles"
+    },
+    "/creations/{creationId}": {
+      "schema": { "$ref": "#/entities/Creation" },
+      "description": "User creations"
+    }
+  }
+}

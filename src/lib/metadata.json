@@ -1,0 +1,5 @@
+{
+  "name": "Omni AI Studio",
+  "description": "A comprehensive AI studio featuring chat, image generation, video generation, and live audio.",
+  "requestFramePermissions": ["camera", "microphone"]
+}
